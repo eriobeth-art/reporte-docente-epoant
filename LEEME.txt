@@ -1,0 +1,24 @@
+REPORTE DOCENTE EPOANT · GitHub Pages
+
+Archivos que debes subir a la RAÍZ del repositorio:
+- index.html
+- CNAME
+- .nojekyll
+
+Subdominio configurado:
+reportedocente.edupsic.com
+
+IMPORTANTE:
+Este paquete NO sustituye Google Apps Script.
+Code.gs e index.html de la aplicación continúan en Apps Script.
+GitHub solo funciona como acceso mediante el dominio edupsic.com.
+
+Después de subir los archivos:
+1. En GitHub: Settings > Pages.
+2. Source: Deploy from a branch.
+3. Branch: main / (root).
+4. Guarda.
+5. En DNS de edupsic.com crea el CNAME:
+   Host/Nombre: reportedocente
+   Destino: <TU-USUARIO-GITHUB>.github.io
+6. Espera la propagación y activa Enforce HTTPS cuando GitHub lo permita.
