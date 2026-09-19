@@ -1,99 +1,38 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#071625">
+  <meta name="theme-color" content="#061523">
   <meta name="description" content="Reporte Docente EPOANT">
   <title>Reporte Docente EPOANT</title>
-  <style>
-    html,body {
-      margin:0;
-      width:100%;
-      height:100%;
-      background:#071625;
-      font-family:Arial,Helvetica,sans-serif;
-      overflow:hidden;
-    }
-    #app {
-      position:fixed;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-      background:#fff;
-    }
-    #loader {
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:10;
-      background:#071625;
-      color:#fff;
-      transition:opacity .25s ease;
-    }
-    .box {
-      text-align:center;
-      padding:24px;
-      max-width:420px;
-    }
-    .spinner {
-      width:34px;
-      height:34px;
-      margin:0 auto 16px;
-      border:4px solid rgba(255,255,255,.25);
-      border-top-color:#fff;
-      border-radius:50%;
-      animation:spin .8s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
-    .fallback {
-      margin-top:14px;
-      font-size:13px;
-      opacity:.8;
-    }
-    .fallback a {
-      color:#fff;
-    }
-  </style>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <div id="loader">
-    <div class="box">
-      <div class="spinner"></div>
-      <strong>Reporte Docente EPOANT</strong>
-      <div class="fallback">Cargando el sistema…</div>
+  <div id="loader" role="status" aria-live="polite">
+    <div class="loader-card">
+      <img class="loader-logo" src="assets/logo-epoant.png" alt="Logo EPOANT">
+      <div class="loader-title">Reporte Docente EPOANT</div>
+      <div class="loader-sub">Escuela Preparatoria Oficial Anexa a la Normal de Tejupilco · Turno Matutino</div>
+      <div class="spinner" aria-hidden="true"></div>
+      <div id="fallback" class="fallback">
+        Si la aplicación tarda en abrir, <a id="directLink" target="_blank" rel="noopener">abrir directamente</a>.
+      </div>
     </div>
   </div>
 
   <iframe
-    id="app"
-    src="https://script.google.com/macros/s/AKfycbxPCoy05SdDLf9B7B9CsZx9ICDV6pqX9w4wEX19NZ7I1fuw2eAo74MiRZ3yCwjY357E/exec"
+    id="appFrame"
     title="Reporte Docente EPOANT"
     allow="clipboard-read; clipboard-write"
     referrerpolicy="strict-origin-when-cross-origin">
   </iframe>
 
-  <script>
-    const frame = document.getElementById('app');
-    const loader = document.getElementById('loader');
-
-    frame.addEventListener('load', () => {
-      setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => loader.remove(), 260);
-      }, 250);
-    });
-
-    // Si el contenido tarda demasiado, deja disponible el acceso directo.
-    setTimeout(() => {
-      if (document.body.contains(loader)) {
-        loader.querySelector('.fallback').innerHTML =
-          'Si no abre automáticamente, <a href="https://script.google.com/macros/s/AKfycbxPCoy05SdDLf9B7B9CsZx9ICDV6pqX9w4wEX19NZ7I1fuw2eAo74MiRZ3yCwjY357E/exec" target="_blank" rel="noopener">abre el sistema directamente</a>.';
-      }
-    }, 8000);
-  </script>
+  <script src="assets/config.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>
