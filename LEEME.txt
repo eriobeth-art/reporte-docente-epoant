@@ -1,0 +1,50 @@
+REPORTE DOCENTE EPOANT V5.0 — ARQUITECTURA PROFESIONAL
+
+OBJETIVO
+El usuario permanece siempre en:
+https://reportedocente.edupsic.com
+
+La interfaz vive realmente en GitHub Pages. Ya NO se incrusta Apps Script y
+ya NO se usa google.script.run desde el subdominio.
+
+COMUNICACIÓN
+GitHub -> POST HTTPS -> Google Apps Script -> postMessage -> GitHub
+
+Esto evita el problema del iframe visible que impedía iniciar sesión en
+navegadores con restricciones de contenido de terceros.
+
+1. APPS SCRIPT
+Reemplaza COMPLETOS:
+- Code.gs
+- index.html
+
+No ejecutes configurarSistema().
+No se borran usuarios, alumnos ni reportes.
+
+Después:
+Implementar > Administrar implementaciones > lápiz > Nueva versión > Implementar.
+Actualiza la implementación cuya URL es:
+https://script.google.com/macros/s/AKfycbwDOyMJAQLy0Ip6u6WCiM0vPcFZVaOmjNwYDFLXxnPTkNPOfkqj_HwLJ_r7qCcKlxU7/exec
+
+2. GITHUB
+Elimina los archivos de la versión anterior y sube DIRECTAMENTE a la raíz:
+- index.html
+- CNAME
+- .nojekyll
+- 404.html
+- logo-epoant.png
+- favicon.png
+
+No subas Code.gs a GitHub.
+
+3. PRUEBA
+Abre en incógnito:
+https://reportedocente.edupsic.com
+
+La barra debe permanecer en el subdominio durante login y uso del sistema.
+
+SEGURIDAD
+- Contraseñas siguen almacenadas como hash.
+- El token de sesión se transmite por POST HTTPS, no en la URL.
+- GitHub no contiene alumnos, tutores, teléfonos, contraseñas ni reportes.
+- Las operaciones protegidas siguen validando el token y rol en Apps Script.
